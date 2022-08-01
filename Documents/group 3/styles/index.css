@@ -1,0 +1,27 @@
+*{background-color: #f7e9db;
+    margin: 0;
+    padding: 0;
+}
+.navigationbar{display: flex;
+    justify-content: space-between; 
+    margin-right: 20%;
+    margin-left:10% ;
+}
+.logo{font-weight:bold;
+font-size: 50px;}
+button{background-color: #FF4066;
+font-size: 25PX;}
+.motto{display: flex;
+justify-content: center;
+margin-top: 50px;
+}
+h1{font-size:100px;}
+.grow{color: #FF4066;
+     font-size: 100px;
+}
+p{font-size: 30px;}
+span{font-weight: bold;}
+.get button{background-color: black;
+color: white;
+}
+.image{margin-left: 6px;}
