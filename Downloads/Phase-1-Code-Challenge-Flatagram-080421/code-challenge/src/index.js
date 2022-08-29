@@ -26,14 +26,6 @@ function showCommentOnDOM(comment) {
   commentList.textContent = comment.content;
   listComments.append(commentList);
 }
-
-let usercomments = [];
-const getComments = () => {
-  return fetch("http://localhost:3000/comments").then((response) =>
-    response.json()
-  );
-};
-
 function updateComments() {
   usercomments.forEach((comment) => {
     const commentList = document.createElement("li");
@@ -41,18 +33,24 @@ function updateComments() {
     listComments.append(commentList);
   });
 }
-function postComments(comment) {
-  fetch("http://localhost:3000/comments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      imageId: 1,
-      content: `${comment}`,
-    }),
-  });
-}
+likeButton.addEventListener("click", () => {
+  like = images[0].likes;
+  if (likeButton.textContent === "♥") {
+    likeButton.textContent = "♡";
+    like = like - like;
+  } else {
+    likeButton.textContent = "♥";
+    like++;
+  }
+  likeCounter.textContent = `${like} likes`;
+});
+let usercomments = [];
+const getComments = () => {
+  return fetch("http://localhost:3000/comments").then((response) =>
+    response.json()
+  );};
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   images = await getImages();
   console.log(images[0].likes);
@@ -60,17 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   usercomments = await getComments();
   updateComments(usercomments);
 
-  likeButton.addEventListener("click", () => {
-    like = images[0].likes;
-    if (likeButton.textContent === "♥") {
-      likeButton.textContent = "♡";
-      like = like - like;
-    } else {
-      likeButton.textContent = "♥";
-      like++;
-    }
-    likeCounter.textContent = `${like} likes`;
-  });
+
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
